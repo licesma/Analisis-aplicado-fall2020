@@ -1,0 +1,31 @@
+Este proyecto fue hecho solo por mí, Esteban Martínez Licón. 174744
+
+Todo el proyecto está dentro de la clase optimizador, ésta tiene adentro todas las funciones necesarias, y al istanciar un objeto
+de esta clase se imprimen las instrucciones de uso para optimizar. Solo se tiene que llamar al método optimizar y poner la función
+así como la dimensión del dominio de ésta. Preferí que se ponga la dimensión en vez de un punto inicial ya que si el usuario no 
+conoce puede ser confusa la elección de un punto inicial.
+
+Los algoritmos fueron programados siguiendo lo visto en clase y con ayuda del Nocedal.
+
+Adjunto un archivo de python con la clase, así como un Jupyter Notebook que hice para probar esta clase.
+
+## Modificación del problema de las cámaras
+Modifiqué la función de este problema porque no estaba de acuerdo con una parte de la sugerida, es que, lo que hace ésta para asegurar
+que las cámaras no estén cercanas unas a otras, divide 1  entre la distancia de cada par de cámaras. Esto logra el objetivo de alejar a
+las cámaras pero a mi parecer no lo hace de forma correcta ya que entre más lejos esten las cámaras entre sí, se minimiza la función si éstas se
+acercan a los puntos de crimen. Lo que propongo, en vez es fijar un radio el cual no quieres dos cámaras a una distancia menor a ese radio
+ya que siguiendo el símil si dos cámaras están muy cercanas cubren exactamente la misma área. Pero una vez que las cámaras están fuera de ese radio
+la función ya no penaliza su distancia. Esto lo hice de la siguiente manera
+
+para cada par de cámaras se suma el siguiente términa
+
+pen*((R - ||cam_i - cam_j||) + |R - ||cam_i - cam_j|| | )
+
+Lo que pasa aquí es que si la distancia entre la cámara i y la j es menor que R entonces el primer término es positivo y también el segundo entonces se suma a la función esta
+distancia multiplicada por una penalización que se escoge de manera arbitraria.
+
+Nótese que si por el contrario la distancia es mayor o igual que el radio entonces la primera cantidad se elimina con la segunda y entonces no se le añade nada a la función tal y
+como queríamos.
+
+En conclusión disfruté y aparendí mucho de hacer este proyecto.
+
